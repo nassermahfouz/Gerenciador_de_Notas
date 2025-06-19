@@ -180,6 +180,7 @@ def relatorio():
             with conn.cursor() as cur:
                 cur.execute(query, params)
                 registros = cur.fetchall()
+            # Salvar CSV em /tmp/
             with open("/tmp/export_notas.csv", "w", newline="", encoding="utf-8") as f:
                 csv.writer(f).writerows([["Aluno", "Professor", "Nota", "DataHora"]] + registros)
     return render_template("relatorio.html", titulo=cfg["titulo"], alunos=cfg["alunos"],
@@ -219,6 +220,7 @@ def editar_nota(nota_id):
 @app.route("/exportar")
 @login_required
 def exportar():
+    # Baixar sempre do /tmp/
     return send_file("/tmp/export_notas.csv", as_attachment=True)
 
 if __name__ == "__main__":
