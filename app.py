@@ -1,4 +1,3 @@
-
 import os
 import json
 import bcrypt
@@ -53,10 +52,9 @@ def atualizar_senhas_para_hash():
         salvar_config(cfg)
         print("Senhas atualizadas para hash.")
 
-@app.before_first_request
-def setup():
-    init_db()
-    atualizar_senhas_para_hash()
+# Inicialização antecipada (no início do app)
+init_db()
+atualizar_senhas_para_hash()
 
 def verificar_senha(hash_senha, senha_digitada):
     return bcrypt.checkpw(senha_digitada.encode(), hash_senha.encode())
