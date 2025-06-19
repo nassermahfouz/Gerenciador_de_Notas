@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block conteudo %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card p-4">
+            <h3 class="text-center mb-4"><i class="bi bi-person-lock"></i> Login</h3>
+            <form method="post" autocomplete="off">
+                <div class="mb-3">
+                    <label class="form-label">Professor:</label>
+                    <select name="professor" class="form-select">
+                        {% for p in professores %}<option>{{ p }}</option>{% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Senha:</label>
+                    <input type="password" name="senha" class="form-control" required>
+                </div>
+                <button class="btn btn-primary w-100"><i class="bi bi-door-open"></i> Entrar</button>
+                {% if erro %}
+                  <div class="alert alert-danger mt-3">{{ erro }}</div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block conteudo %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card p-4">
+            <h3 class="mb-4"><i class="bi bi-pencil-square"></i> Editar Nota</h3>
+            <form method="post">
+                <div class="mb-3">
+                    <label class="form-label">Aluno:</label>
+                    <input type="text" class="form-control" value="{{ aluno }}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Professor:</label>
+                    <input type="text" class="form-control" value="{{ professor }}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Nota Atual:</label>
+                    <input type="text" class="form-control" value="{{ nota_atual }}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Nova Nota:</label>
+                    <input type="number" name="nova_nota" step="0.01" min="0" max="10" class="form-control" required>
+                </div>
+                <button class="btn btn-success w-100"><i class="bi bi-check-lg"></i> Salvar Alteração</button>
+                <a href="/relatorio" class="btn btn-secondary w-100 mt-2"><i class="bi bi-x-lg"></i> Cancelar</a>
+                {% if erro %}<div class="alert alert-danger mt-3">{{ erro }}</div>{% endif %}
+                {% if sucesso %}<div class="alert alert-success mt-3">{{ sucesso }}</div>{% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

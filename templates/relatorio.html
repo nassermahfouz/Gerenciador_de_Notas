@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block conteudo %}
+<div class="card p-4">
+    <h3 class="mb-3"><i class="bi bi-table"></i> Relatório de Notas</h3>
+    <form method="post" class="row g-3 mb-4">
+        <div class="col-md-3">
+            <label class="form-label">Aluno:</label>
+            <select name="aluno" class="form-select">
+                <option value="">Todos</option>
+                {% for a in alunos %}<option>{{ a }}</option>{% endfor %}
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Professor:</label>
+            <select name="professor" class="form-select">
+                <option value="">Todos</option>
+                {% for p in professores %}<option>{{ p }}</option>{% endfor %}
+            </select>
+        </div>
+        <div class="col-md-2">
+            <label class="form-label">Data Início:</label>
+            <input type="date" name="data_ini" class="form-control">
+        </div>
+        <div class="col-md-2">
+            <label class="form-label">Data Fim:</label>
+            <input type="date" name="data_fim" class="form-control">
+        </div>
+        <div class="col-md-2 d-flex align-items-end">
+            <button class="btn btn-primary w-100"><i class="bi bi-search"></i> Filtrar</button>
+        </div>
+    </form>
+    <div class="mb-3 text-end">
+        <a href="/exportar" class="btn btn-success"><i class="bi bi-download"></i> Baixar CSV</a>
+        <a href="/" class="btn btn-secondary ms-2"><i class="bi bi-arrow-left"></i> Voltar</a>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered align-middle bg-white">
+            <thead class="table-light"><tr><th>Aluno</th><th>Professor</th><th>Nota</th><th>DataHora</th>{% if acesso %}<th>Ações</th>{% endif %}</tr></thead>
+            <tbody>
+            {% for r in registros %}
+            <tr>
+                <td>{{ r[1] }}</td>
+                <td>{{ r[2] }}</td>
+                <td>{{ r[3] }}</td>
+                <td>{{ r[4] }}</td>
+                {% if acesso %}
+                <td><a href='/editar-nota/{{ r[0] }}' class='btn btn-outline-primary btn-sm'><i class="bi bi-pencil-square"></i> Editar</a></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

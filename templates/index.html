@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block conteudo %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card p-4">
+            <h3 class="mb-4"><i class="bi bi-pencil-square"></i> Lançamento de Nota</h3>
+            <form method="post">
+                <div class="mb-3">
+                    <label class="form-label">Aluno:</label>
+                    <select name="aluno" class="form-select">
+                        {% for a in alunos %}<option>{{ a }}</option>{% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Nota (0 a 10):</label>
+                    <input type="number" name="nota" min="0" max="10" step="0.01" class="form-control" required>
+                </div>
+                <button class="btn btn-primary"><i class="bi bi-plus-circle"></i> Registrar Nota</button>
+                {% if resultado %}
+                  <div class="alert alert-info mt-3">{{ resultado }}</div>
+                {% endif %}
+            </form>
+        </div>
+        {% if acesso %}
+        <div class="text-end mt-3">
+            <a href="/relatorio" class="btn btn-outline-primary"><i class="bi bi-table"></i> Relatório</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
