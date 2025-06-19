@@ -1,4 +1,17 @@
 {
   "titulo": "GERENCIADOR DE NOTAS - ETAPA 6 - 2025/1",
-  ...
+  "alunos": [
+    "Aluno 1",
+    "Aluno 2"
+  ],
+  "usuarios": {
+    "Nasser": {
+      "senha": "senha123",
+      "acesso_relatorio": true
+    },
+    "Luigi": {
+      "senha": "senha456",
+      "acesso_relatorio": false
+    }
+  }
 }
